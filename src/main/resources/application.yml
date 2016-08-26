@@ -1,0 +1,13 @@
+debug: true
+
+server:
+  port: 9004
+
+kibana:
+  uri: http://deliflow-kibana-server:8088
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 30000
+ribbon:
+  ConnectTimeout: 30000
+  ReadTimeout: 60000
+

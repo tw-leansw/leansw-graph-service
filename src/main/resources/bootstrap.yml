@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: cd-metrics
+  cloud:
+    config:
+      uri: http://121.42.193.129:8888
+encrypt:
+  failOnError: false
