@@ -3,6 +3,17 @@ debug: true
 server:
   port: 9004
 
+eureka:
+  instance:
+     preferIpAddress: true
+     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+
+
 kibana:
   uri: http://deliflow-kibana-server:8088
 
