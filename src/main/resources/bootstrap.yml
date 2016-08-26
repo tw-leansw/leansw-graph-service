@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cd-metrics
+    name: graph-service
   cloud:
     config:
       uri: http://121.42.193.129:8888
