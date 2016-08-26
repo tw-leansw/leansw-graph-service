@@ -4,6 +4,7 @@ server:
   port: 9004
 
 eureka:
+  enabled: true
   instance:
      preferIpAddress: true
      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
