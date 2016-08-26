@@ -7,5 +7,5 @@ USERNAME=${GOCD_USERNAME:=admin}
 PASSWORD=${GOCD_PASSWORD:=badger}
 
 java -Xmx512m -Djava.security.egd=file:/dev/./urandom \
--cp $JAVA_HOME/lib/*:/lean/java/lib/*:/graph-service.jar com.thoughtworks.lean.GraphService \
+-cp $JAVA_HOME/lib/*:/lean/java/lib/*:/graph-service.jar com.thoughtworks.lean.graph.GraphService \
 --spring.profiles.active=$PROFILE

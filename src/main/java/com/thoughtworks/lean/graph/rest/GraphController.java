@@ -19,7 +19,6 @@ import java.util.Collections;
 public class GraphController {
 
     private HttpHeaders buildHttpHeaders() {
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON_UTF8));
