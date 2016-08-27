@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Collections;
+
 @RequestMapping(path = {"/api/graph"})
 @RestController
 public class GraphController {
@@ -44,6 +42,15 @@ public class GraphController {
         return restTemplate.postForObject(kibanaUri + "elasticsearch/_msearch?timeout=0&ignore_unavailable=true", getRequest(req), String.class);
     }
 
+    @RequestMapping(value = "post/{type}/{id}")
+    public String docPost(@RequestBody String req, @PathVariable("type") String type, @PathVariable("id") String id, @RequestParam String opType) {
+        UriComponentsBuilder componentsBuilder = UriComponentsBuilder.fromHttpUrl(kibanaUri + "elasticsearch/.kibana/" + type + "/" + id);
+        if (opType != null) {
+            componentsBuilder.queryParam("op_type");
+        }
+        return restTemplate.postForObject(componentsBuilder.toUriString(), getRequest(req), String.class);
+    }
+
     @RequestMapping(value = "index-pattern/search")
     public String indexPatternSearch(@RequestBody String req, @RequestParam("fields") String[] fields) {
         String url = UriComponentsBuilder.fromHttpUrl(kibanaUri + "elasticsearch/.kibana/index-pattern/_search").queryParam("fields", fields).build().toUriString();
@@ -55,6 +62,5 @@ public class GraphController {
         String url = UriComponentsBuilder.fromHttpUrl(kibanaUri + "elasticsearch/.kibana/_mapping/*/field/_source").queryParam("_", _).build().toUriString();
         return restTemplate.postForObject(url, getRequest(req), String.class);
     }
-
 
 }
