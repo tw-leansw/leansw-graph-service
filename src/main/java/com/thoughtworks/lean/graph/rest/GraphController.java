@@ -43,7 +43,7 @@ public class GraphController {
     }
 
     @RequestMapping(value = "post/{type}/{id}")
-    public String docPost(@RequestBody String req, @PathVariable("type") String type, @PathVariable("id") String id, @RequestParam String opType) {
+    public String docPost(@RequestBody String req, @PathVariable("type") String type, @PathVariable("id") String id, @RequestParam(value = "op_type",required = false) String opType) {
         UriComponentsBuilder componentsBuilder = UriComponentsBuilder.fromHttpUrl(kibanaUri + "elasticsearch/.kibana/" + type + "/" + id);
         if (opType != null) {
             componentsBuilder.queryParam("op_type");
