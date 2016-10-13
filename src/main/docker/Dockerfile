@@ -6,5 +6,5 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT sh /entrypoint.sh
 VOLUME /tmp
-ADD graph-service-*.jar /graph-service.jar
+ADD graph-service-*-SNAPSHOT.jar /graph-service.jar
 RUN touch /graph-service.jar
